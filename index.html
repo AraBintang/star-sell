@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <link rel ="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bintang Sell - Belanja Online Produk Bintang Terpercaya</title>
+    <link rel="stylesheet" href="styls.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">
+                <div class="logo-icon">BS</div>
+                <span class="logo-text">Bintang Sell</span>
+            </a>
+            
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Cari produk bintang...">
+            </div>
+            
+            <div class="nav-actions">
+                <button class="cart-btn" onclick="showCart()">
+                    🛒 Keranjang
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="history-btn" onclick="showOrderHistory()" id="historyBtn" style="display: none;">
+                    📋 Riwayat
+                </button>
+                <button class="login-btn" onclick="showLogin()" id="loginBtn">
+                    👤 Masuk
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-bubbles">
+            <div class="bubble" onclick="showProduct('iPhone 15 Pro Max')">📱</div>
+            <div class="bubble" onclick="showProduct('MacBook Air M3')">💻</div>
+            <div class="bubble" onclick="showProduct('Sony Headphones')">🎧</div>
+            <div class="bubble" onclick="showProduct('Nike Air Jordan')">👟</div>
+            <div class="bubble" onclick="showProduct('Smart TV')">📺</div>
+            <div class="bubble" onclick="showProduct('Yoga Mat')">🧘</div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>⭐ Belanja di Bintang Sell ⭐</h1>
+            <p>Temukan produk berkualitas bintang lima dengan harga terbaik! Klik bubble produk di atas untuk melihat detail.</p>
+            
+            <div class="hero-search">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Cari produk bintang..." onkeyup="searchProducts(this.value)">
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">⭐ 10+</div>
+                    <div class="stat-label">Produk Bintang</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">🏆 5</div>
+                    <div class="stat-label">Kategori</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">💯 100%</div>
+                    <div class="stat-label">Terpercaya</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-header">
+                🔍 <span>Kategori:</span>
+            </div>
+            <div class="category-filters">
+                <button class="category-btn active" onclick="filterCategory('All')">All</button>
+                <button class="category-btn" onclick="filterCategory('Electronics')">Electronics</button>
+                <button class="category-btn" onclick="filterCategory('Fashion')">Fashion</button>
+                <button class="category-btn" onclick="filterCategory('Home & Garden')">Home & Garden</button>
+                <button class="category-btn" onclick="filterCategory('Books')">Books</button>
+                <button class="category-btn" onclick="filterCategory('Sports')">Sports</button>
+            </div>
+        </div>
+
+        <!-- Products Header -->
+        <div class="products-header">
+            <h2 class="products-title">⭐ Semua Produk Bintang</h2>
+            <div>Menampilkan <span id="productCount">10</span> produk</div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded here by JavaScript -->
+        </div>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="features-header">
+                <h2 class="features-title">⭐ Mengapa Pilih Bintang Sell? ⭐</h2>
+                <p>Pengalaman belanja online terbaik dengan layanan bintang dan produk berkualitas premium</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🚚</div>
+                    <h3>⚡ Pengiriman Kilat</h3>
+                    <p>Gratis ongkir untuk pembelian di atas Rp 500.000 ke seluruh Indonesia dengan layanan ekspres</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>⭐ Garansi Bintang</h3>
+                    <p>Produk original berkualitas bintang dengan garansi resmi dan layanan purna jual terbaik</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">💳</div>
+                    <h3>🔒 Pembayaran Aman</h3>
+                    <p>Berbagai metode pembayaran yang aman dan terpercaya dengan sistem keamanan tingkat bintang</p>
+                </div>
+            </div>
+            
+            <a href="#" class="cta-button" onclick="alert('Selamat berbelanja di Bintang Sell!')">
+                ⭐ Mulai Belanja Sekarang ⭐
+            </a>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #ea580c;">⭐ Masuk ke Bintang Sell</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-primary">🔐 Masuk</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">
+                Belum punya akun? <a href="#" onclick="showRegister()" style="color: #ea580c;">Daftar di sini</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #ea580c;">⭐ Daftar Bintang Sell</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regName">Nama Lengkap:</label>
+                    <input type="text" id="regName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email:</label>
+                    <input type="email" id="regEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password:</label>
+                    <input type="password" id="regPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirmPassword">Konfirmasi Password:</label>
+                    <input type="password" id="regConfirmPassword" name="confirmPassword" required>
+                </div>
+                <button type="submit" class="btn-primary">📝 Daftar</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">
+                Sudah punya akun? <a href="#" onclick="showLogin()" style="color: #ea580c;">Masuk di sini</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close" onclick="closeModal('cartModal')">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #ea580c;">🛒 Keranjang Belanja</h2>
+            <div class="cart-details" id="cartDetails">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-total" id="cartTotal">
+                <!-- Total will be displayed here -->
+            </div>
+            <div class="cart-actions">
+                <button class="btn-secondary" onclick="closeModal('cartModal')">
+                    ← Kembali Belanja
+                </button>
+                <button class="btn-primary" onclick="showCheckout()" style="flex: 1;">
+                    💳 Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order History Modal -->
+    <div id="orderHistoryModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close" onclick="closeModal('orderHistoryModal')">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #ea580c;">📋 Riwayat Pesanan</h2>
+            <div class="order-history" id="orderHistory">
+                <!-- Order history will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tracking Modal -->
+    <div id="trackingModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close" onclick="closeModal('trackingModal')">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #ea580c;">📦 Lacak Paket</h2>
+            <div id="trackingContent">
+                <!-- Tracking content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="close" onclick="closeModal('checkoutModal')">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #ea580c;">💳 Checkout</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h3 style="color: #ea580c; margin-bottom: 1rem;">📦 Ringkasan Pesanan</h3>
+                    <div id="checkoutItems" style="max-height: 300px; overflow-y: auto;">
+                        <!-- Checkout items will be loaded here -->
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: #ea580c; margin-bottom: 1rem;">📋 Informasi Pengiriman</h3>
+                    <form id="checkoutForm">
+                        <div class="form-group">
+                            <label for="fullName">Nama Lengkap:</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">No. Telepon:</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Alamat Lengkap:</label>
+                            <textarea id="address" name="address" rows="3" style="width: 100%; padding: 0.75rem; border: 2px solid #e5e5e5; border-radius: 10px; resize: vertical;" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="paymentMethod">Metode Pembayaran:</label>
+                            <select id="paymentMethod" name="paymentMethod" style="width: 100%; padding: 0.75rem; border: 2px solid #e5e5e5; border-radius: 10px;" required>
+                                <option value="">Pilih metode pembayaran</option>
+                                <option value="transfer">Transfer Bank</option>
+                                <option value="cod">Bayar di Tempat (COD)</option>
+                                <option value="ewallet">E-Wallet</option>
+                                <option value="credit">Kartu Kredit</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="cart-total" id="checkoutTotal" style="margin-top: 2rem;">
+                <!-- Total will be displayed here -->
+            </div>
+            
+            <div class="cart-actions">
+                <button class="btn-secondary" onclick="backToCart()">
+                    ← Kembali ke Keranjang
+                </button>
+                <button class="btn-primary" onclick="processOrder()" style="flex: 1;">
+                    ✅ Konfirmasi Pesanan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
